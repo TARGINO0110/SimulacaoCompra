@@ -35,6 +35,10 @@ namespace SimulacaoCompra.Models
         [Display(Name = "Data da compra")]
         public DateTime Datacompra { get; set; }
 
+        [Required]
+        [Display(Name = "Tipo de Calculo")]
+        public string TipoCalculo { get; set; }
+
         [Display(Name = "Valor da parcela")]
         [DataType(DataType.Currency)]
         [Column(TypeName = "decimal(10, 2)")]

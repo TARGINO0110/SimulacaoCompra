@@ -76,6 +76,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Valorparcela)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TipoCalculo)
+                </th>
                 <th class="text-center">
                     <strong>Ações da tabela</strong>
                 </th>
@@ -84,28 +87,31 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Valortotal)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Valorjuros)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Qtdparcelas)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Datacompra)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Valorparcela)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" class="mdl-button mdl-js-button mdl-button--colored" asp-route-id="@item.Idcompra">Editar <i class="glyphicon glyphicon-pencil"></i></a> |
-                        <a asp-action="Details" class="mdl-button mdl-js-button mdl-js-ripple-effect" asp-route-id="@item.Idcompra">Detalhes <i class="glyphicon glyphicon-file"></i></a> |
-                        <a asp-action="Delete" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--red-700 mdl-color-text--white" asp-route-id="@item.Idcompra">Deletar <i class="glyphicon glyphicon-trash"></i></a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valortotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valorjuros)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Qtdparcelas)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Datacompra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valorparcela)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoCalculo)
+                </td>
+                <td>
+                    <a asp-action="Edit" class="mdl-button mdl-js-button mdl-button--colored" asp-route-id="@item.Idcompra">Editar <i class="glyphicon glyphicon-pencil"></i></a> |
+                    <a asp-action="Details" class="mdl-button mdl-js-button mdl-js-ripple-effect" asp-route-id="@item.Idcompra">Detalhes <i class="glyphicon glyphicon-file"></i></a> |
+                    <a asp-action="Delete" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--red-700 mdl-color-text--white" asp-route-id="@item.Idcompra">Deletar <i class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
             }
 
             <tr>

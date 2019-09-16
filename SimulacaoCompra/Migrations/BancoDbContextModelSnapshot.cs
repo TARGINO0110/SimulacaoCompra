@@ -28,10 +28,12 @@ namespace SimulacaoCompra.Migrations
                     b.Property<DateTime>("Datacompra");
 
                     b.Property<decimal>("Qtdparcelas")
-                        .HasColumnType("decimal(2, 0)");
+                        .HasColumnType("Decimal(10,5)");
+
+                    b.Property<string>("TipoCalculo");
 
                     b.Property<decimal>("Valorjuros")
-                        .HasColumnType("decimal(10, 5)");
+                        .HasColumnType("decimal(10, 4)");
 
                     b.Property<decimal>("Valorparcela")
                         .HasColumnType("decimal(10, 2)");

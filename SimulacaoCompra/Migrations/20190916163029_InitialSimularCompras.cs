@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SimulacaoCompra.Migrations
 {
-    public partial class InicialSimularCompra : Migration
+    public partial class InitialSimularCompras : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,9 +16,10 @@ namespace SimulacaoCompra.Migrations
                     Idcompra = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Datacompra = table.Column<DateTime>(nullable: false),
-                    Qtdparcelas = table.Column<decimal>(type: "decimal(2, 0)", nullable: false),
+                    Qtdparcelas = table.Column<decimal>(type: "Decimal(10,5)", nullable: false),
+                    TipoCalculo = table.Column<string>(nullable: true),
                     Valorjuros = table.Column<decimal>(type: "decimal(10, 4)", nullable: false),
-                    Valorparcela = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
+                    Valorparcela = table.Column<decimal>(type: "decimal(10, 2)", nullable: true),
                     Valortotal = table.Column<decimal>(type: "decimal(10, 2)", nullable: false)
                 },
                 constraints: table =>

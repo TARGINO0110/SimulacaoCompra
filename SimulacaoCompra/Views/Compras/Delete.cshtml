@@ -48,6 +48,28 @@
             </dd>
         </dl>
 
+        <hr />
+        <div class="dl-horizontal text-center popover-title">
+
+            <strong>Detalhes da parcela</strong>
+        </div>
+        <br />
+        <br />
+        <div class="dl-horizontal">
+            @for (decimal Count = 1; Count <= Model.Qtdparcelas; Count++)
+            {<dl>
+                    @for (Model.Datacompra = Model.Datacompra.AddMonths(0); Count <= Model.Qtdparcelas; Count++)
+                    {
+                        Model.Datacompra = Model.Datacompra.AddMonths(1);
+                        <dt>@Html.DisplayFor(model => model.Datacompra)</dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Valorparcela)
+                        </dd>
+                    }
+                </dl>
+            }
+        </div>
+
         <div class="form-group">
             <form asp-action="Delete">
                 <a asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect"><i class="glyphicon glyphicon-chevron-left"></i> Voltar para lista</a> |
