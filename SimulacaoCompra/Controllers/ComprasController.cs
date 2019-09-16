@@ -141,7 +141,7 @@ namespace SimulacaoCompra.Controllers
                 else
                 {
                     TempData["ErroSalvar"] = "A data das compras devem ser para hoje ou posteriormente!";
-                    return View("Create");
+                    return View("Edit");
                 }
             }
             catch(Exception)
