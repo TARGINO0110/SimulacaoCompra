@@ -1,0 +1,122 @@
+﻿@model IEnumerable<SimulacaoCompra.Models.Compra>
+
+@{
+    ViewBag.Title = "Principal";
+}
+<br />
+<div class="row">
+    @if (TempData["Salvo"] != null)
+    {
+        <div class="form-group alert alert-success" role="alert">
+            <span class="badge badge-pill badge-success">Sucesso!</span>
+            @TempData["Salvo"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    }
+
+    @if (TempData["Deletar"] != null)
+    {
+        <div class="form-group alert alert-success" role="alert">
+            <span class="badge badge-pill badge-success">Atenção!</span>
+            @TempData["Deletar"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    }
+
+    <div class="demo-card-square mdl-card mdl-shadow--4dp center-block">
+
+        <img class="img-responsive" src="~/images/vetorFinanceiro.jpg" />
+
+        <div class="mdl-card__supporting-text">
+            <strong>Realize agora mesmo a simulação de suas compras.</strong>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <p class="text-center">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" asp-action="Create">Simular agora <i class="glyphicon glyphicon-list-alt"></i></a>
+            </p>
+        </div>
+    </div>
+
+    @{
+        if (TempData["Message"] != null)
+        {
+            <div class="alert alert-dismissable" role="alert">
+
+                <p>
+                    <h5 class="text-center"><strong>@TempData["Message"]</strong>  <span class="glyphicon glyphicon-info-sign"></span></h5>
+                </p>
+            </div>
+        }
+    }
+
+
+
+
+    <hr />
+    <h5 class="text-center">Simulações Salvas</h5>
+    <table class="table mdl-shadow--4dp">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valortotal)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valorjuros)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Qtdparcelas)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Datacompra)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Valorparcela)
+                </th>
+                <th class="text-center">
+                    <strong>Ações da tabela</strong>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valortotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valorjuros)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Qtdparcelas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Datacompra)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Valorparcela)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="mdl-button mdl-js-button mdl-button--colored" asp-route-id="@item.Idcompra">Editar <i class="glyphicon glyphicon-pencil"></i></a> |
+                        <a asp-action="Details" class="mdl-button mdl-js-button mdl-js-ripple-effect" asp-route-id="@item.Idcompra">Detalhes <i class="glyphicon glyphicon-file"></i></a> |
+                        <a asp-action="Delete" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--red-700 mdl-color-text--white" asp-route-id="@item.Idcompra">Deletar <i class="glyphicon glyphicon-trash"></i></a>
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>Valor total das parcelas</th>
+                <td>R$ @Model.Sum(x => x.Valorparcela)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+

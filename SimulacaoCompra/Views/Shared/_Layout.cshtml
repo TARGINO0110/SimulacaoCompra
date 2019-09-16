@@ -3,11 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SimulacaoCompra</title>
+    <title>@ViewData["Title"] - Simular & Comprar</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+        <link href="~/mdl/material.min.css" rel="stylesheet" />
+        <script src="~/mdl/material.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -16,6 +20,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
+
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -26,22 +31,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SimulacaoCompra</a>
+                <a asp-area="" asp-controller="Compras" asp-action="Index" class="navbar-brand mdl-color--deep-purple-900 mdl-color-text--white">Simular & Comprar</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Compras" asp-action="Index"> Inicio</a></li>
+
                 </ul>
             </div>
-        </div>
+        </div>      
     </nav>
+    
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - SimulacaoCompra</p>
+            <p>&copy; 2019 - Simular & Comprar</p>
         </footer>
     </div>
 
@@ -67,5 +73,7 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+
+   
 </body>
 </html>

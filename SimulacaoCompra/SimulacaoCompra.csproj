@@ -5,7 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190914150238_InicialSimularCompras.cs" />
+    <Compile Remove="Migrations\20190914150238_InicialSimularCompras.Designer.cs" />
+    <Compile Remove="Migrations\20190914151507_InicialSimularCompras.cs" />
+    <Compile Remove="Migrations\20190914151507_InicialSimularCompras.Designer.cs" />
+    <Compile Remove="Migrations\20190914153937_InicialSimularCompra.cs" />
+    <Compile Remove="Migrations\20190914153937_InicialSimularCompra.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>

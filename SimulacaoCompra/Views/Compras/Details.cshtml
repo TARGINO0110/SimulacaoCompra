@@ -1,0 +1,60 @@
+﻿@model SimulacaoCompra.Models.Compra
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+
+<h2 class="text-center">Detalhes da Simulação</h2>
+
+
+<hr class="mdl-color--deep-purple-A700" />
+<div class="row">
+
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4 mdl-shadow--4dp">
+        <br />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Valortotal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Valortotal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Valorjuros)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Valorjuros)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Qtdparcelas)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Qtdparcelas)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Datacompra)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Datacompra)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Valorparcela)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Valorparcela)
+            </dd>
+        </dl>
+        <hr />
+        <div class="form-group">
+            <a asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect"><i class="glyphicon glyphicon-chevron-left"></i> Voltar para lista</a> |
+            <a asp-action="Edit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--orange-300 mdl-color-text--white" asp-route-id="@Model.Idcompra">Editar</a> 
+
+        </div>
+    </div>
+    <div>
+       
+    </div>
+    </div>

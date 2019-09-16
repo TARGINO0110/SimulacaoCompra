@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SimulacaoCompra.Models;
 
 namespace SimulacaoCompra
 {
@@ -22,6 +24,9 @@ namespace SimulacaoCompra
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            //Parametro para executar serviço de conexão SqlServer no appsettings.json
+            services.AddDbContext<BancoDbContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +39,7 @@ namespace SimulacaoCompra
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Compras/Error");
             }
 
             app.UseStaticFiles();
@@ -43,7 +48,7 @@ namespace SimulacaoCompra
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Compras}/{action=Index}/{id?}");
             });
         }
     }
