@@ -63,7 +63,7 @@ namespace SimulacaoCompra.Controllers
                 {
                     _context.Add(compra);
                     //Calculo da operação simulada, atribuindo o valor total do calculo para Valor parcela.
-                    compra.Valorparcela = compra.Valortotal * compra.Valorjuros / compra.Qtdparcelas;
+                    compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal / compra.Qtdparcelas;
                     await _context.SaveChangesAsync();
                     TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     return RedirectToAction(nameof(Index));
@@ -121,7 +121,7 @@ namespace SimulacaoCompra.Controllers
                     try
                     {
                         _context.Update(compra);
-                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros / compra.Qtdparcelas;
+                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal / compra.Qtdparcelas;                       
                         await _context.SaveChangesAsync();
                         TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     }
