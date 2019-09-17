@@ -57,17 +57,47 @@
         <br />
         <!--O laço de repetição "For" abaixo, retorna um contagem de valores existentes sobre um determinado parcelamento Com o quantitativo de vencimentos futuros-->
         <div class="dl-horizontal">
-            @for (decimal Count = 1; Count <= Model.Qtdparcelas; Count++)
-            {<dl>
-                    @for (Model.Datacompra = Model.Datacompra.AddMonths(0); Count <= Model.Qtdparcelas; Count++)
-                    {
-                        Model.Datacompra = Model.Datacompra.AddMonths(1);
-                        <dt>@Html.DisplayFor(model => model.Datacompra)</dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Valorparcela)
-                        </dd>
-                    }
-                </dl>
+            @if (Model.TipoCalculo == "J.Simples")
+            {
+                @for (decimal Count = 1; Count <= Model.Qtdparcelas; Count++)
+                {<dl>
+                        @for (Model.Datacompra = Model.Datacompra.AddMonths(0); Count <= Model.Qtdparcelas; Count++)
+                        {
+                            Model.Datacompra = Model.Datacompra.AddMonths(1);
+                            <dt>@Html.DisplayFor(model => model.Datacompra)</dt>
+                            <dd>
+
+                                @Html.DisplayFor(model => model.Valorparcela)
+
+                            </dd>
+                        }
+                    </dl>
+                }
+            }
+
+            @if (Model.TipoCalculo == "J.Composto")
+            {
+
+                @for (decimal Count = 1; Count <= Model.Qtdparcelas; Count++)
+                {<dl>
+                        @for (Model.Datacompra = Model.Datacompra.AddMonths(0); Count <= Model.Qtdparcelas; Count++)
+                        {
+                            Model.Datacompra = Model.Datacompra.AddMonths(1);
+                            <dt>@Html.DisplayFor(model => model.Datacompra)</dt>
+                            <dd>
+
+                                @Html.DisplayFor(model => model.Valorparcela)
+
+                            </dd>
+
+                        }
+
+                        <dd>+ 0,04</dd>
+
+
+                    </dl>
+
+                }
             }
         </div>
 

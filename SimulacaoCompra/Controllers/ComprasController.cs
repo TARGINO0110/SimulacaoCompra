@@ -65,7 +65,7 @@ namespace SimulacaoCompra.Controllers
                 {
                     _context.Add(compra);
                     compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal;
-                    compra.Valorparcela /=  compra.Qtdparcelas;
+                    compra.Valorparcela /= compra.Qtdparcelas;
                     await _context.SaveChangesAsync();
                     TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     return RedirectToAction(nameof(Index));
@@ -75,9 +75,20 @@ namespace SimulacaoCompra.Controllers
                 // calculo do juros Composto
                 else if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Composto"))
                 {
+                                       
                     _context.Add(compra);
-                    compra.Valorparcela = compra.Valortotal * (1 + compra.Valorjuros * compra.Qtdparcelas);
+                    double M; //montante
+                    double capital = Convert.ToDouble(compra.Valortotal); //capital
+                    double taxa = Convert.ToDouble(compra.Valorjuros);//taxa juros
+                    double Qtd = Convert.ToDouble(compra.Qtdparcelas);//parcela
+                    
+
+                    M = capital * Math.Pow((1 + taxa),Qtd);
+
+                    
+                    compra.Valorparcela = Convert.ToDecimal(M);
                     compra.Valorparcela /= compra.Qtdparcelas;
+                                                        
                     await _context.SaveChangesAsync();
                     TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     return RedirectToAction(nameof(Index));
@@ -166,7 +177,16 @@ namespace SimulacaoCompra.Controllers
                     try
                     {
                         _context.Update(compra);
-                        compra.Valorparcela = compra.Valortotal * (1 + compra.Valorjuros * compra.Qtdparcelas);
+                        double M; //montante
+                        double capital = Convert.ToDouble(compra.Valortotal); //capital
+                        double taxa = Convert.ToDouble(compra.Valorjuros);//taxa juros
+                        double Qtd = Convert.ToDouble(compra.Qtdparcelas);//parcela
+
+
+                        M = capital * Math.Pow((1 + taxa), Qtd);
+
+
+                        compra.Valorparcela = Convert.ToDecimal(M);
                         compra.Valorparcela /= compra.Qtdparcelas;
                         await _context.SaveChangesAsync();
                         TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
