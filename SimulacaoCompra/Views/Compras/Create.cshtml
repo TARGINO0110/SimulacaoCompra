@@ -56,27 +56,11 @@
 
             <div class="form-group">
             <select asp-for="TipoCalculo" class="form-control">
-                <option value="Normal">Normal</option>
                 <option value="J.Simples">J.Simples</option>
-                <option value="J.Composto">J.Composto"</option>
+                <option value="J.Composto">J.Composto</option>
             </select>
             </div>
-
-            <!----
-    <div class="form-group">
-        <label asp-for="Valorparcela" class="control-label"></label>
-        <input asp-for="Valorparcela" class="form-control" />
-        <span asp-validation-for="Valorparcela" class="text-danger"></span>
-    </div>
-        -->
-
-            @if (TempData["Calculo"] != null)
-            {
-                <div>
-                    @TempData["Calculo"]
-
-                </div>
-            }
+         
             <div class="form-group">
                 <input type="submit" value="Salvar simulação" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
 

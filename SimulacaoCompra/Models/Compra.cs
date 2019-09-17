@@ -26,7 +26,7 @@ namespace SimulacaoCompra.Models
         
         [Display(Name = "Qtd Parcelas")]
         [Column(TypeName = "Decimal(10,5)")]
-        [DisplayFormat(DataFormatString ="{0}")]
+        [DisplayFormat(DataFormatString ="{0:0}")]
         public decimal Qtdparcelas { get; set; }
 
         [DataType(DataType.Date)]

@@ -19,7 +19,7 @@ namespace SimulacaoCompra.Controllers
             _context = context;
         }
 
-        // GET: Compras
+        // GET: Compras inicializa a pagina inicial de compras retornando de modo atualizado a data atual.
         public async Task<IActionResult> Index()
         {
             TempData["Message"] = "Olá, Seja bem vindo(a) ao simulador de compras, Hoje é dia: " + DateTime.Today.ToString("dd/MM/yyyy");
@@ -58,48 +58,40 @@ namespace SimulacaoCompra.Controllers
         public async Task<IActionResult> Create([Bind("Idcompra,Valortotal,Valorjuros,Qtdparcelas,Datacompra,Valorparcela,TipoCalculo")] Compra compra)
         {
            
-
+            // Inicia-se aqui a condição do tipo do calculo escolhido pelo usuário sendo de juros simples ou composto.
             try
-            {// calculo do juros normal
-                if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "Normal"))
+            { // calculo do juros Simples
+                if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Simples"))
                 {
                     _context.Add(compra);
-                    compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal / compra.Qtdparcelas;
+                    compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal;
+                    compra.Valorparcela /=  compra.Qtdparcelas;
                     await _context.SaveChangesAsync();
                     TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     return RedirectToAction(nameof(Index));
                 }
-                // calculo do juros Simples
-                else if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Simples"))
-                {
-                    _context.Add(compra);
-                    compra.Valorparcela = compra.Valortotal * compra.Valorjuros * compra.Qtdparcelas / compra.Qtdparcelas;
-                    await _context.SaveChangesAsync();
-                    TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
-                    return RedirectToAction(nameof(Index));
-
-                }
+               
+              
                 // calculo do juros Composto
                 else if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Composto"))
                 {
                     _context.Add(compra);
                     compra.Valorparcela = compra.Valortotal * (1 + compra.Valorjuros * compra.Qtdparcelas);
+                    compra.Valorparcela /= compra.Qtdparcelas;
                     await _context.SaveChangesAsync();
                     TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     return RedirectToAction(nameof(Index));
 
                 }
 
-   
-
             
                 else
-                {
+                { 
                     TempData["ErroSalvar"] = "A data das compras devem ser para hoje ou posteriormente!";
                     return View("Create");
                 }
                 
-            }
+            } //Tratamento de exceção
             catch (Exception)
             {
                 return View("Error");
@@ -135,19 +127,20 @@ namespace SimulacaoCompra.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Idcompra,Valortotal,Valorjuros,Qtdparcelas,Datacompra,Valorparcela,TipoCalculo")] Compra compra)
         {
             try
-            {
+            { // verifica a Id de cada cadastro salvo retornando caso seja existente na base de dados
                 if (id != compra.Idcompra)
                 {
                     return NotFound();
                 }
 
-                if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "Normal"))
+                if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Simples"))
                 {
                    
                     try
                     {
                         _context.Update(compra);
-                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal / compra.Qtdparcelas;
+                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal;
+                        compra.Valorparcela /= compra.Qtdparcelas;
                         await _context.SaveChangesAsync();
                         TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                         
@@ -166,30 +159,7 @@ namespace SimulacaoCompra.Controllers
                     return RedirectToAction(nameof(Index));
                 }
 
-                else if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Simples"))
-                {
-                    
-                    try
-                    {
-                        _context.Update(compra);
-                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros * compra.Qtdparcelas / compra.Qtdparcelas;
-                        await _context.SaveChangesAsync();
-                        TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
-                        
-                    }
-                    catch (DbUpdateConcurrencyException)
-                    {
-                        if (!CompraExists(compra.Idcompra))
-                        {
-                            return NotFound();
-                        }
-                        else
-                        {
-                            throw;
-                        }
-                    }
-                    return RedirectToAction(nameof(Index));
-                }
+                
                 else if ((ModelState.IsValid) && (compra.Datacompra >= DateTime.Today) && (compra.TipoCalculo == "J.Composto"))
                 {
                     
@@ -197,6 +167,7 @@ namespace SimulacaoCompra.Controllers
                     {
                         _context.Update(compra);
                         compra.Valorparcela = compra.Valortotal * (1 + compra.Valorjuros * compra.Qtdparcelas);
+                        compra.Valorparcela /= compra.Qtdparcelas;
                         await _context.SaveChangesAsync();
                         TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     }
