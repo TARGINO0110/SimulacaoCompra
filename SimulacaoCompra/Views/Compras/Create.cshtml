@@ -35,6 +35,7 @@
                 <input asp-for="Valortotal" class="form-control" />
                 <small class="input-group form-text text-muted">Preencha o campo valor total como por Ex: 100 </small>
                 <span asp-validation-for="Valortotal" class="text-danger"></span>
+                
             </div>
             <div class="form-group">
                 <label asp-for="Valorjuros" class="control-label"></label>
@@ -55,12 +56,12 @@
             </div>
 
             <div class="form-group">
-            <select asp-for="TipoCalculo" class="form-control">
-                <option value="J.Simples">J.Simples</option>
-                <option value="J.Composto">J.Composto</option>
-            </select>
+                <select asp-for="TipoCalculo" class="form-control">
+                    <option value="J.Simples">J.Simples</option>
+                    <option value="J.Composto">J.Composto</option>
+                </select>
             </div>
-         
+
             <div class="form-group">
                 <input type="submit" value="Salvar simulação" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
 
@@ -74,5 +75,16 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function ()
+        {
+            $("#telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
+            $("#cpf").inputmask("mask", { "mask": "999.999.999-99" }, {reverse:true});
+            $("#cep").inputmask("mask", { "mask": "99999-999" });
+            $("#nascimento").inputmask("mask", { "mask": "99/99/9999" });
+            $("#preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
+            $("#valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
+            $("#ip").inputmask("mask", { "mask": "999.999.999.999" });
+    });
+    </script>
 }

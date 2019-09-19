@@ -83,9 +83,9 @@ namespace SimulacaoCompra.Controllers
                     double Qtd = Convert.ToDouble(compra.Qtdparcelas);//parcela
                     
 
-                    M = capital * Math.Pow((1 + taxa),Qtd);
+                    M = capital * Math.Pow((1 + taxa),Qtd);//Formula Juros Composto
 
-                    
+
                     compra.Valorparcela = Convert.ToDecimal(M);
                     compra.Valorparcela /= compra.Qtdparcelas;
                                                         
@@ -150,7 +150,7 @@ namespace SimulacaoCompra.Controllers
                     try
                     {
                         _context.Update(compra);
-                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal;
+                        compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal;//Formula Juros Simples
                         compra.Valorparcela /= compra.Qtdparcelas;
                         await _context.SaveChangesAsync();
                         TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
@@ -183,7 +183,7 @@ namespace SimulacaoCompra.Controllers
                         double Qtd = Convert.ToDouble(compra.Qtdparcelas);//parcela
 
 
-                        M = capital * Math.Pow((1 + taxa), Qtd);
+                        M = capital * Math.Pow((1 + taxa), Qtd);//Formula Juros Composto
 
 
                         compra.Valorparcela = Convert.ToDecimal(M);
@@ -250,7 +250,7 @@ namespace SimulacaoCompra.Controllers
                 var compra = await _context.Compras.SingleOrDefaultAsync(m => m.Idcompra == id);
                 _context.Compras.Remove(compra);
                 await _context.SaveChangesAsync();
-                TempData["Deletar"] = "A simulação do valor da compra de R$ "+ compra.Valortotal + " com a parcela em " + compra.Qtdparcelas + "X de R$ "+ compra.Valorparcela + " na data "+ compra.Datacompra.ToString("dd/MM/yyyy")+" foi deletada com sucesso!";
+                TempData["Deletar"] = "A simulação do valor da compra de R$ "+ compra.Valortotal + " com a parcela em " + compra.Qtdparcelas.ToString("0") + "X de R$ "+ compra.Valorparcela.ToString("0.00") + " na data "+ compra.Datacompra.ToString("dd/MM/yyyy")+" foi deletada com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception)

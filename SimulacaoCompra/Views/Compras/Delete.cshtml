@@ -73,6 +73,14 @@
                         }
                     </dl>
                 }
+                <dl>
+
+                    <dt> </dt>
+                    <dd>_________________</dd>
+
+                    <dt>Valor Total: </dt>
+                    <dd>@{Model.Valorparcela = Model.Valorparcela * Model.Qtdparcelas;} @Html.DisplayFor(model => model.Valorparcela)</dd>
+                </dl>
             }
 
             @if (Model.TipoCalculo == "J.Composto")
@@ -85,6 +93,17 @@
                             Model.Datacompra = Model.Datacompra.AddMonths(1);
                             <dt>@Html.DisplayFor(model => model.Datacompra)</dt>
                             <dd>
+                                @if (Count == Model.Qtdparcelas)
+                                {
+                                    double A1 = Convert.ToDouble(Model.Valorparcela);
+                                    double A2 = 0.04;
+                                    double X;
+
+                                    X = A1 + A2;
+
+                                    Model.Valorparcela = Convert.ToDecimal(X);
+
+                                }
 
                                 @Html.DisplayFor(model => model.Valorparcela)
 
@@ -92,12 +111,37 @@
 
                         }
 
-                        <dd>+ 0,04</dd>
+
 
 
                     </dl>
 
                 }
+                <dl>
+
+                    <dt> </dt>
+                    <dd>_________________</dd>
+
+                    <dt>Valor Total: </dt>
+                    <dd>
+                        @{
+                            double Total;
+                            double ValorP = Convert.ToDouble(Model.Valorparcela);
+                            double QtdP = Convert.ToDouble(Model.Qtdparcelas);
+                            double Residuo = 0.04;
+
+                            Total = ValorP - Residuo;
+                            Total = Total * QtdP;
+                            Total = Total + Residuo;
+
+                            Model.Valorparcela = Convert.ToDecimal(Total);
+
+
+                            @Html.DisplayFor(model => model.Valorparcela);
+                        }
+
+                    </dd>
+                </dl>
             }
         </div>
 
