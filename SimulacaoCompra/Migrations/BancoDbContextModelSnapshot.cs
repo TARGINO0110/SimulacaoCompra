@@ -30,7 +30,8 @@ namespace SimulacaoCompra.Migrations
                     b.Property<decimal>("Qtdparcelas")
                         .HasColumnType("Decimal(10,5)");
 
-                    b.Property<string>("TipoCalculo");
+                    b.Property<string>("TipoCalculo")
+                        .IsRequired();
 
                     b.Property<decimal>("Valorjuros")
                         .HasColumnType("decimal(10, 4)");

@@ -21,9 +21,12 @@ namespace SimulacaoCompra.Controllers
 
         // GET: Compras inicializa a pagina inicial de compras retornando de modo atualizado a data atual.
         public async Task<IActionResult> Index()
-        {
-            TempData["Message"] = "Olá, Seja bem vindo(a) ao simulador de compras, Hoje é dia: " + DateTime.Today.ToString("dd/MM/yyyy");
+        {     
+
+                TempData["Message"] = "Olá, Seja bem vindo(a) ao simulador de compras, Hoje é dia: " + DateTime.Today.ToString("dd/MM/yyyy");
+            
             return View(await _context.Compras.ToListAsync());
+
         }
 
         // GET: Compras/Details/5
@@ -65,7 +68,7 @@ namespace SimulacaoCompra.Controllers
                 {
                     _context.Add(compra);
                     compra.Valorparcela = compra.Valortotal * compra.Valorjuros + compra.Valortotal;
-                    compra.Valorparcela /= compra.Qtdparcelas;
+                    compra.Valorparcela /= compra.Qtdparcelas;                  
                     await _context.SaveChangesAsync();
                     TempData["Salvo"] = "A simulação foi salva com sucesso, o valor da sua parcela em " + compra.Qtdparcelas + "X é de R$ " + compra.Valorparcela.ToString("0.00");
                     return RedirectToAction(nameof(Index));
@@ -98,7 +101,7 @@ namespace SimulacaoCompra.Controllers
             
                 else
                 { 
-                    TempData["ErroSalvar"] = "A data das compras devem ser para hoje ou posteriormente!";
+                    TempData["ErroSalvar"] = "A data da compra ou serviço deve ser para data atual ou posterior!";
                     return View("Create");
                 }
                 

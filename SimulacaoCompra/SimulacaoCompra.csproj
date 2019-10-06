@@ -11,6 +11,10 @@
     <Compile Remove="Migrations\20190914151507_InicialSimularCompras.Designer.cs" />
     <Compile Remove="Migrations\20190914153937_InicialSimularCompra.cs" />
     <Compile Remove="Migrations\20190914153937_InicialSimularCompra.Designer.cs" />
+    <Compile Remove="Migrations\20190920173100_inicialSimularCompra.cs" />
+    <Compile Remove="Migrations\20190920173100_inicialSimularCompra.Designer.cs" />
+    <Compile Remove="Migrations\20190920174644_inicialSimularCompras.cs" />
+    <Compile Remove="Migrations\20190920174644_inicialSimularCompras.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,10 +31,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Scripts\" />
   </ItemGroup>
 
 </Project>

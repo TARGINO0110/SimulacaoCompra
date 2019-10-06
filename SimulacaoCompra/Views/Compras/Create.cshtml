@@ -13,7 +13,7 @@
 {
     <div class="form-group alert alert-danger" role="alert">
         <span class="badge badge-pill badge-success">Atenção!</span>
-        @TempData["ErroSalvar"]
+        <strong>@TempData["ErroSalvar"]</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
@@ -23,43 +23,69 @@
 
 
 <div class="row">
-
     <div class="col-md-4">
+
     </div>
-    <div class="col-md-4 mdl-shadow--4dp">
+    <div class=" col-md-4 mdl-shadow--4dp">
         <br />
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Valortotal" class="control-label"></label>
-                <input asp-for="Valortotal" class="form-control" />
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-usd"></span>
+                    </span>
+                    <input asp-for="Valortotal" class="form-control" type="number" />
+                </div>
                 <small class="input-group form-text text-muted">Preencha o campo valor total como por Ex: 100 </small>
                 <span asp-validation-for="Valortotal" class="text-danger"></span>
-                
             </div>
             <div class="form-group">
                 <label asp-for="Valorjuros" class="control-label"></label>
-                <input asp-for="Valorjuros" class="form-control" />
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-usd"></span>
+                    </span>
+                    <input asp-for="Valorjuros" class="form-control" type="text" id="porcento" />
+                </div>
                 <small class="input-group form-text text-muted">Preencha o campo valor juros como por Ex: 0,010 </small>
                 <span asp-validation-for="Valorjuros" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Qtdparcelas" class="control-label"></label>
-                <input asp-for="Qtdparcelas" class="form-control" />
-                <small class="input-group form-text text-muted">Preencha o campo Qtd parcela como por Ex: 2 </small>
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </span>
+                    <input asp-for="Qtdparcelas" class="form-control" type="number"/>
+                </div>
+                <small class="input-group form-text text-muted">Preencha o campo Qtd parcela como por Ex: 1 </small>
                 <span asp-validation-for="Qtdparcelas" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Datacompra" class="control-label"></label>
-                <input asp-for="Datacompra" class="form-control" />
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input asp-for="Datacompra" class="form-control" />
+                </div>
                 <span asp-validation-for="Datacompra" class="text-danger"></span>
             </div>
-
             <div class="form-group">
-                <select asp-for="TipoCalculo" class="form-control">
-                    <option value="J.Simples">J.Simples</option>
-                    <option value="J.Composto">J.Composto</option>
-                </select>
+                <label asp-for="TipoCalculo" class="control-label"></label>
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </span>
+                    <select asp-for="TipoCalculo" class="form-control">
+                        <option value=" "></option>
+                        <option value="J.Simples">J.Simples</option>
+                        <option value="J.Composto">J.Composto</option>
+                    </select>
+                </div>
+                <span asp-validation-for="TipoCalculo" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -68,6 +94,10 @@
             </div>
         </form>
     </div>
+
+
+
+
 </div>
 
 <div>
@@ -75,16 +105,13 @@
 </div>
 
 @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        $(document).ready(function ()
-        {
-            $("#telefone").inputmask("mask", { "mask": "(99) 9999-99999" });
-            $("#cpf").inputmask("mask", { "mask": "999.999.999-99" }, {reverse:true});
-            $("#cep").inputmask("mask", { "mask": "99999-999" });
-            $("#nascimento").inputmask("mask", { "mask": "99/99/9999" });
+        $(document).ready(function () {
             $("#preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
+            $("#porcento").inputmask("mask", { "mask": "9,999" }, { reverse: true });
             $("#valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
-            $("#ip").inputmask("mask", { "mask": "999.999.999.999" });
-    });
+            
+        });
     </script>
 }
