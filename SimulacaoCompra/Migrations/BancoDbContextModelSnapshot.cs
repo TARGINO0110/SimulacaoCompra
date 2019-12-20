@@ -27,6 +27,9 @@ namespace SimulacaoCompra.Migrations
 
                     b.Property<DateTime>("Datacompra");
 
+                    b.Property<string>("NomeDaCompra")
+                        .HasMaxLength(100);
+
                     b.Property<decimal>("Qtdparcelas")
                         .HasColumnType("Decimal(10,5)");
 

@@ -17,6 +17,12 @@
         <br />
         <dl class="dl-horizontal">
             <dt>
+                @Html.DisplayNameFor(model => model.NomeDaCompra)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.NomeDaCompra)
+            </dd>
+            <dt>
                 @Html.DisplayNameFor(model => model.Valortotal)
             </dt>
             <dd>
@@ -27,6 +33,12 @@
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Valorjuros)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoCalculo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TipoCalculo)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.Qtdparcelas)
@@ -54,7 +66,7 @@
             <strong>Detalhes da parcela</strong>
         </div>
         <br />
-        <br /> 
+        <br />
         <!--O laço de repetição "For" abaixo, retorna um contagem de valores existentes sobre um determinado parcelamento Com o quantitativo de vencimentos futuros-->
         <div class="dl-horizontal">
             @if (Model.TipoCalculo == "J.Simples")
@@ -140,26 +152,26 @@
 
                             @Html.DisplayFor(model => model.Valorparcela);
                         }
-                        
+
 
                     </dd>
                 </dl>
 
 
-                            }
+            }
 
 
 
         </div>
 
 
-            <div class="form-group">
-                <a asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect"><i class="glyphicon glyphicon-chevron-left"></i> Voltar para lista</a> |
-                <a asp-action="Edit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--orange-300 mdl-color-text--white" asp-route-id="@Model.Idcompra">Editar</a>
-
-            </div>
-        </div>
-        <div>
+        <div class="form-group">
+            <a asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect"><i class="glyphicon glyphicon-chevron-left"></i> Voltar para lista</a> |
+            <a asp-action="Edit" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--orange-300 mdl-color-text--white" asp-route-id="@Model.Idcompra">Editar</a>
 
         </div>
     </div>
+    <div>
+
+    </div>
+</div>

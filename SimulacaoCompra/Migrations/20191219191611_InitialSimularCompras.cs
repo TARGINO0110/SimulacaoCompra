@@ -16,10 +16,11 @@ namespace SimulacaoCompra.Migrations
                     Idcompra = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Datacompra = table.Column<DateTime>(nullable: false),
+                    NomeDaCompra = table.Column<string>(maxLength: 100, nullable: true),
                     Qtdparcelas = table.Column<decimal>(type: "Decimal(10,5)", nullable: false),
-                    TipoCalculo = table.Column<string>(nullable: true),
+                    TipoCalculo = table.Column<string>(nullable: false),
                     Valorjuros = table.Column<decimal>(type: "decimal(10, 4)", nullable: false),
-                    Valorparcela = table.Column<decimal>(type: "decimal(10, 2)", nullable: true),
+                    Valorparcela = table.Column<decimal>(type: "decimal(10, 2)", nullable: false),
                     Valortotal = table.Column<decimal>(type: "decimal(10, 2)", nullable: false)
                 },
                 constraints: table =>

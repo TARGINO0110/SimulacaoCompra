@@ -30,6 +30,17 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Idcompra" />
             <div class="form-group">
+                <label asp-for="NomeDaCompra" class="control-label"></label>
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </span>
+                    <input asp-for="NomeDaCompra" class="form-control" type="text" />
+                </div>
+                <small class="input-group form-text text-muted">Preencha o campo nome da compra com até 100 caracteres </small>
+                <span asp-validation-for="NomeDaCompra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Valortotal" class="control-label"></label>
                 <div class="col-md-10 input-group">
                     <span class="input-group-addon">
@@ -57,7 +68,7 @@
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-plus"></span>
                     </span>
-                    <input asp-for="Qtdparcelas" class="form-control" type="number"/>
+                    <input asp-for="Qtdparcelas" class="form-control" type="number" />
                 </div>
                 <small class="input-group form-text text-muted">Preencha o campo Qtd parcela como por Ex: 1 </small>
                 <span asp-validation-for="Qtdparcelas" class="text-danger"></span>
@@ -109,7 +120,7 @@
             $("#preco").inputmask("mask", { "mask": "999.999,99" }, { reverse: true });
             $("#porcento").inputmask("mask", { "mask": "9,999" }, { reverse: true });
             $("#valor").inputmask("mask", { "mask": "#.##9,99" }, { reverse: true });
-           
+
         });
     </script>
 

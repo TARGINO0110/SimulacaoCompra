@@ -11,7 +11,7 @@ using System;
 namespace SimulacaoCompra.Migrations
 {
     [DbContext(typeof(BancoDbContext))]
-    [Migration("20190920174758_InitialSimularCompras")]
+    [Migration("20191219191611_InitialSimularCompras")]
     partial class InitialSimularCompras
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,11 +28,14 @@ namespace SimulacaoCompra.Migrations
 
                     b.Property<DateTime>("Datacompra");
 
+                    b.Property<string>("NomeDaCompra")
+                        .HasMaxLength(100);
+
                     b.Property<decimal>("Qtdparcelas")
                         .HasColumnType("Decimal(10,5)");
 
-                    b.Property<string>("TipoCalculo");
-                        
+                    b.Property<string>("TipoCalculo")
+                        .IsRequired();
 
                     b.Property<decimal>("Valorjuros")
                         .HasColumnType("decimal(10, 4)");
