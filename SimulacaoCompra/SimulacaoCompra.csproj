@@ -29,7 +29,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" />
-    <PackageReference Include="PagedList" Version="1.17.0" />
   </ItemGroup>
 
   <ItemGroup>
