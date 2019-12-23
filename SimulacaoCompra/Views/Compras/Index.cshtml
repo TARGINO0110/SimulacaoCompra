@@ -1,6 +1,7 @@
-﻿@model IEnumerable<SimulacaoCompra.Models.Compra>
+﻿
+@model PaginatedList<SimulacaoCompra.Models.Compra>
 
-
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
 @{
     ViewBag.Title = "Principal";
 }
@@ -28,7 +29,7 @@
         </div>
     }
 
-    <div class="demo-card-square mdl-card mdl-shadow--4dp center-block">
+    <div class="demo-card-square mdl-card mdl-shadow--8dp center-block">
 
         <img class="img-responsive" src="~/images/vetorFinanceiro.jpg" />
 
@@ -41,33 +42,47 @@
             </p>
         </div>
     </div>
+    <wbr />
 
     <hr />
     <h5 class="text-center">Simulações Salvas</h5>
-    <div class="table-responsive">
-        <table class="mdl-data-table mdl-shadow--4dp">
-            <thead class="mdl-typography--font-black">
+    <div class="form-group">
+        <form asp-action="Index" method="get">
+            <div class="form-actions">
+                <p>
+                    Buscar por nome: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                    <input type="submit" value="Buscar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" /> |
+                    <a class="mdl-button" asp-action="Index">Carregar lista completa</a>
+                </p>
+            </div>
+        </form>
+    </div>
+    <wbr />
+    <div class="form-group table-responsive mdl-shadow--8dp mdl-typography--font-black">
+        <table class="mdl-data-table ">
+            <thead>
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.NomeDaCompra) |
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Nome da compra</a> |
+                    </th>
+
+                    <th>
+                        Valor da compra |
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Valortotal) |
+                        % Juros |
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Valorjuros) |
+                        Qtd Parcelas |
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Qtdparcelas) |
+                        <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Data da compra</a>|
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Datacompra) |
+                        Valor da parcela |
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Valorparcela) |
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TipoCalculo) |
+                        Tipo de Calculo |
                     </th>
                     <th>
                         <strong>Ações da tabela</strong>
@@ -118,4 +133,22 @@
         </table>
     </div>
     <br />
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Retornar
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Próximo
+    </a>
 </div>

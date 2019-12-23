@@ -17,14 +17,63 @@ namespace SimulacaoCompra.Controllers
         {
             _context = context;
         }
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
+
+        public PaginatedList<Compra> Compras { get; set; }
 
         // GET: Compras inicializa a pagina inicial de compras retornando de modo atualizado a data atual.
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
 
             TempData["Message"] = "Olá, Seja bem vindo(a) ao simulador de compras, Hoje é dia: " + DateTime.Today.ToString("dd/MM/yyyy");
 
-            return View(await _context.Compras.ToListAsync());
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
+            var compras = from c in _context.Compras
+                          select c;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                compras = compras.Where(c => c.NomeDaCompra.Contains(searchString)
+                                       || c.TipoCalculo.Contains(searchString));
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    compras = compras.OrderByDescending(c => c.NomeDaCompra);
+                    break;
+                case "Date":
+                    compras = compras.OrderBy(c => c.Datacompra);
+                    break;
+                case "date_desc":
+                    compras = compras.OrderByDescending(s => s.Datacompra);
+                    break;
+                default:
+                    compras = compras.OrderBy(s => s.NomeDaCompra);
+                    break;
+            }
+
+            int pageSize = 3;
+            return View(await PaginatedList<Compra>.CreateAsync(
+                compras.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
         // GET: Compras/Details/5
         public async Task<IActionResult> Details(int? id)

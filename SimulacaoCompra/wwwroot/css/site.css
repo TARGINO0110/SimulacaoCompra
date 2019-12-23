@@ -1,8 +1,13 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    
+    background-color: #dedddd;
 }
 
+.campo{
+    background-color:#f8f7f7;
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
