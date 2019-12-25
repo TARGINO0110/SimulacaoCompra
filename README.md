@@ -1,4 +1,4 @@
-# Sistema SimulacaoCompra 
+# Sistema Simulacao de compras 
 Este sistema tem como intuito apresentar a simulação sobre as compras realizadas pelo usuário,
 na qual será simulado o calculo do valor total de uma determinada compra de serviço ou produto sobre
 um percentual de juros divido entre o número de parcelas.
