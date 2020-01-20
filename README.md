@@ -1,4 +1,4 @@
-# Sistema web para Simulaçao de compras 
+# Sistema web para Simulação de compras 
 Este sistema tem como o intuito apresentar uma simulação sobre a compra realizada pelo usuário,
 na qual será calculado o valor total de uma determinada compra de serviço ou produto sobre
 um percentual de juros divido entre o número de parcelas.
@@ -160,7 +160,7 @@ namespace SimulacaoCompra
   }
 }
 
-5- utilizar o Console do gerenciador de pacotes para realizar os comando da migrations
+5- Utilizar o Console do gerenciador de pacotes para realizar os comando da migrations
 -----------------------------------------------------------
 1 comando, aguardar finalizar:
 PM> add-migration InicialCompras
