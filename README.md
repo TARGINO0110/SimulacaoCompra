@@ -1,12 +1,12 @@
-# Sistema Simulacao de compras 
-Este sistema tem como intuito apresentar a simulação sobre as compras realizadas pelo usuário,
-na qual será simulado o calculo do valor total de uma determinada compra de serviço ou produto sobre
+# Sistema web para Simulaçao de compras 
+Este sistema tem como o intuito apresentar uma simulação sobre a compra realizada pelo usuário,
+na qual será calculado o valor total de uma determinada compra de serviço ou produto sobre
 um percentual de juros divido entre o número de parcelas.
 
 # Tecnologias utilizadas para o desenvolvimento
-VisualStudio 2017 => ASP.NET Core MVC; 
+VisualStudio 2019 => ASP.NET Core MVC; 
 EF Core;
-Sql Server 2017;
+Sql Server 2019;
 
 # Passos de Inicialização
 1- Criar em Models Compra.cs e adicionar código abaixo:
