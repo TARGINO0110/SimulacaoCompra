@@ -96,7 +96,25 @@
                 </div>
                 <span asp-validation-for="TipoCalculo" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label"></label>
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-bishop"></span>
+                    </span>
+                    <select asp-for="Categoria" class="form-control">
+                        <option value=" "></option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Assessórios">Assessórios</option>
+                        <option value="Jóias">Jóias</option>
+                        <option value="Aparelhos Eletrônicos">Aparelhos Eletrônicos</option>
+                        <option value="Imóveis">Imóveis</option>
+                        <option value="Esportes">Esportes</option>
+                        <option value="Lazer">Lazer</option>
+                    </select>&nbsp;
+                </div>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
             <div class="form-group text-center">
                 <input type="submit" value="Salvar simulação" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
             </div>

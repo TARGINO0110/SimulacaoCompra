@@ -2,7 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     
-    background-color: #dedddd;
+    background-color: #f3f3f3;
 }
 
 .campo{
@@ -24,6 +24,11 @@
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"] {
     width: 100%;
+}
+.nav{
+    font-family:Candara;
+    font-size:large;
+    width:auto;
 }
 
 /* QR code generator */

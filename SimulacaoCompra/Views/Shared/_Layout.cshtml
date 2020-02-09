@@ -34,12 +34,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Compras" asp-action="Index" class="navbar-brand mdl-color--deep-purple-900 mdl-color-text--white">Simular & Comprar</a>
+                <a asp-area="" asp-controller="Compras" asp-action="Index" class="nav navbar-header img-responsive"><img src="~/images/LOGO.png" alt="logo" /></a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse col-lg-10">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Compras" asp-action="Index"> Inicio</a></li>
-
+                    <li><a asp-area="" asp-controller="Compras" asp-action="Index" class="mdl-typography--font-medium"> Inicio </a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Compras" asp-action="Create" class="mdl-typography--font-medium"> Realizar Simulação</a></li>
                 </ul>
             </div>
         </div>

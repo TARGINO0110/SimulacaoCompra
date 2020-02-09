@@ -1,12 +1,12 @@
 ﻿
 @model PaginatedList<SimulacaoCompra.Models.Compra>
 
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-blue.min.css" />
 @{
     ViewBag.Title = "Principal";
 }
 <br />
-<div class="row">
+<div class="row form-group">
     @if (TempData["Salvo"] != null)
     {
         <div class="form-group alert alert-success" role="alert">
@@ -43,23 +43,52 @@
         </div>
     </div>
     <wbr />
-
     <hr />
     <h5 class="text-center">Simulações Salvas</h5>
-    <div class="form-group">
-        <form asp-action="Index" method="get">
-            <div class="form-actions">
+    <br />
+    <div class="row col-md-3">
+        <div class="form-group">
+            <form asp-action="Index" method="get">
                 <p>
-                    Buscar por nome: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
-                    <input type="submit" value="Buscar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" /> |
-                    <a class="mdl-button" asp-action="Index">Carregar lista completa</a>
+                    <text>Buscar por nome:</text>
                 </p>
-            </div>
-        </form>
+                <div class="input-group">
+                    <input type="text" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" />&nbsp;
+                    <div class="input-group-append">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit" value="Buscar">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="form-group">
+            <form asp-action="Index" method="get">
+                <p>
+                    <text>Filtrar por categoria :</text>
+                </p>
+                <div class="input-group">
+                    <select class="form-control" name="SearchString" value="@ViewData["CurrentFilter"]">
+                        <option value=" ">Selecione as opções</option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Assessorios">Assessórios</option>
+                        <option value="Joias">Jóias</option>
+                        <option value="Aparelhos Eletronicos">Aparelhos Eletrônicos</option>
+                        <option value="Imoveis">Imóveis</option>
+                        <option value="Esportes">Esportes</option>
+                    </select> &nbsp;
+                    <div class="input-group-append">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" type="submit" value="Buscar">Buscar</button>
+                    </div>
+                </div>
+                <br />
+                <div class="input-group-append">
+                    <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary" asp-action="Index">Carregar lista completa <i class="glyphicon glyphicon-refresh"></i></a>
+                </div>
+            </form>
+        </div>
     </div>
     <wbr />
-    <div class="form-group table-responsive mdl-shadow--8dp mdl-typography--font-black">
-        <table class="mdl-data-table ">
+    <div class="form-group table-responsive mdl-shadow--8dp mdl-typography--font-black ">
+        <table class="mdl-data-table">
             <thead>
                 <tr>
                     <th>
@@ -83,6 +112,9 @@
                     </th>
                     <th>
                         Tipo de Calculo |
+                    </th>
+                    <th>
+                        Categoria |
                     </th>
                     <th>
                         <strong>Ações da tabela</strong>
@@ -115,19 +147,33 @@
                             @Html.DisplayFor(modelItem => item.TipoCalculo)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Categoria)
+                        </td>
+                        <td>
                             <a asp-action="Edit" class="mdl-button mdl-js-button mdl-button--colored" asp-route-id="@item.Idcompra">Editar <i class="glyphicon glyphicon-pencil"></i></a> |
                             <a asp-action="Details" class="mdl-button mdl-js-button mdl-js-ripple-effect" asp-route-id="@item.Idcompra">Detalhes <i class="glyphicon glyphicon-file"></i></a> |
                             <a asp-action="Delete" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--red-700 mdl-color-text--white" asp-route-id="@item.Idcompra">Deletar <i class="glyphicon glyphicon-trash"></i></a>
                         </td>
                     </tr>
                 }
-
+            <thead>
                 <tr>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <th>Valor total das parcelas</th>
-                    <td>R$ @Model.Sum(x => x.Valorparcela)</td>
+                    <td></td>
+                    <th>Valor total das compras listadas</th>
+                    <th>Valor total das parcelas listadas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>R$ @Model.Sum(x => x.Valortotal)</td>
+                    <td>R$ @Model.Sum(y => y.Valorparcela)</td>
                 </tr>
             </tbody>
         </table>

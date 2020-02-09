@@ -51,7 +51,8 @@ namespace SimulacaoCompra.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 compras = compras.Where(c => c.NomeDaCompra.Contains(searchString)
-                                       || c.TipoCalculo.Contains(searchString));
+                                       || c.TipoCalculo.Contains(searchString)
+                                       || c.Categoria.Contains(searchString));
             }
 
 
@@ -67,7 +68,7 @@ namespace SimulacaoCompra.Controllers
                     compras = compras.OrderByDescending(s => s.Datacompra);
                     break;
                 default:
-                    compras = compras.OrderBy(s => s.NomeDaCompra);
+                    compras = compras.OrderBy(s => s.Categoria);
                     break;
             }
 
@@ -104,7 +105,7 @@ namespace SimulacaoCompra.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Idcompra,NomeDaCompra,Valortotal,Valorjuros,Qtdparcelas,Datacompra,Valorparcela,TipoCalculo")] Compra compra)
+        public async Task<IActionResult> Create([Bind("Idcompra,NomeDaCompra,Valortotal,Valorjuros,Qtdparcelas,Datacompra,Valorparcela,TipoCalculo,Categoria")] Compra compra)
         {
 
             // Inicia-se aqui a condição do tipo do calculo escolhido pelo usuário sendo de juros simples ou composto.
@@ -184,7 +185,7 @@ namespace SimulacaoCompra.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Idcompra,NomeDaCompra,Valortotal,Valorjuros,Qtdparcelas,Datacompra,Valorparcela,TipoCalculo")] Compra compra)
+        public async Task<IActionResult> Edit(int id, [Bind("Idcompra,NomeDaCompra,Valortotal,Valorjuros,Qtdparcelas,Datacompra,Valorparcela,TipoCalculo,Categoria")] Compra compra)
         {
             try
             { // verifica a Id de cada cadastro salvo retornando caso seja existente na base de dados

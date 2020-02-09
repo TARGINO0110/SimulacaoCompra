@@ -95,11 +95,29 @@
                 </div>
                 <span asp-validation-for="TipoCalculo" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label"></label>
+                <div class="col-md-10 input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-bishop"></span>
+                    </span>
+                    <select asp-for="Categoria" class="form-control">
+                        <option value=" "></option>
+                        <option value="Roupas">Roupas</option>
+                        <option value="Assessorios">Assessórios</option>
+                        <option value="Joias">Jóias</option>
+                        <option value="Aparelhos Eletronicos">Aparelhos Eletrônicos</option>
+                        <option value="Imoveis">Imóveis</option>
+                        <option value="Esportes">Esportes</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect"><i class="glyphicon glyphicon-chevron-left"></i> Voltar para lista </a> |
+                <input type="submit" value="Salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
+            </div>
         </form>
-        <div class="form-group">
-            <a asp-action="Index" class="mdl-button mdl-js-button mdl-js-ripple-effect"><i class="glyphicon glyphicon-chevron-left"></i> Voltar para lista </a> |
-            <input type="submit" value="Salvar" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" />
-        </div>
     </div>
 </div>
 
